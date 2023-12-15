@@ -7,7 +7,7 @@ const EditTutorial = ({ getTutorials, selectedTutorial }) => {
     const [description, setDescription] = useState('');
   
     useEffect(() => {
-      if (selectedTutorial) {
+      if (!selectedTutorial) {
         setTitle(selectedTutorial.title);
         setDescription(selectedTutorial.description);
       }
@@ -18,7 +18,7 @@ const EditTutorial = ({ getTutorials, selectedTutorial }) => {
       if (!selectedTutorial) return; 
   
       try {
-        const res = await axios.put(`${process.env.REACT_APP_URL}/${selectedTutorial.id}`, {
+        const res = await axios.put(`${process.env.REACT_APP_URL}${selectedTutorial.id}/`, {
           title,
           description,
         });
